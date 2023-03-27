@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const names = ['wes', 'kait', 'lux'];
+
+// Arrow funtion shave 3 main benefits:
+// 1: they are much more concise
+// 2: they have implicit returns which allows us to write one-liners in code.
+// 3: it does rebind the value of 'This' when you use an arrow function inside of another function
+
+//To add 'bos' to the end of all three names in the array above:
+
+
+//Regular function
+
+const fullNames = names.map(function(name){
+    return `${name} bos`;   
+});
+
+console.log(fullNames);
+
+
+//Arrow function
+
+const fullNames2 = names.map((name) => {
+    return `${name} bos`;   
+});
+
+//arrow function with one parameter:
+
+const fullNames3 = names.map(name =>{
+    return `${name} bos`;   
+});
+
+
+//trimming down the arrow function:
+
+// with implicit return ie without the 'return' keyword:
+const fullNames4 = names.map((name) =>`${name} bos`);
+
+//with no arguments at all in the function, pass an empty parenthesis:
+const fullNames5 = names.map(() =>`cool bos`);
+
+//Arrow functions are always anonymous functions, ie., they are not named functions, therefore, when you use an arrow function, you cannot name them.
+
+//example of a named function:
+
+function sayMyNam (name){
+    alert (`Hello ${name}`);
+}
+
+//advantages of using a named function:
+
+//if you have a stack trace ie., if you have an error and you intend to figure out where it all went wrong,
+//using a named function makes it easier to identify where the error is located. 
+
+//but you can however put them in a variable: for example:
+
+const sayMyName = (name) => { 
+    alert(`Hello ${name}!`) };
+
+sayMyName('Peter');
+
+
+</script>
+</body>
+</html>
+
