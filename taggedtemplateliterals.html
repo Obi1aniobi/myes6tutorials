@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hl {
+            background: yellow;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <script>
+
+        function highlight(strings, ...values){ 
+
+            // the main idea behind Template Tags is that: we have a string, we pass in the regular string and then we get all pieces that is up to the user to craft it together to return some modified data.
+            
+            // we used the ...values as a parameter of the function highlight because we do not know how many parameters will be passed in. We use the ES6 REST operator, i.e.,the three dots (...).
+
+            //the (...values) will take the rest of the values that are passed into the argument and put them into an array.
+            
+            //debugger; 
+
+            // the debugger will stop the function from running.
+
+            let str = '' 
+            
+            // a 'let'variable because the use of const will not allow the tacking of strings to it.
+            strings.forEach((string, i) => { // i refers to the index of the actual element
+                //str += string + (value[i] || '');  //if there are no values of i, we return a blank string in this case, ''.
+
+                // concatinating on what we get
+
+                //str += string + (value[i] || '') //to highlight the name and the actual age of the dog and to show the users which strings we paseed in , we use a CSS to highlight them. in this case, the name and the actual age. We used template tags instead of concatination.
+
+                str += `${string} <span contenteditable class="hl">${values[i] || ''}</span>`;
+            } )
+            //looping over the first strings array and tack on my dogs array with a forEach().
+            return str;
+
+        }
+        const name = 'Snickers';
+        const age = 100;
+        const sentence = highlight`My dog's name is ${name} and he is ${age} years old`; //put the name of the function in front of the template, that means tagging it with a function name.
+        //the browser will run the function, and it will provide it with all the instruction about the string, the pieces that the person typed as well as the variables that got passed in.
+        //whtaever is returned from the function is what the sentence variable will be.
+        document.body.innerHTML = sentence;
+        console.log(sentence);
+    </script>
+</body>
+</html>
