@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="bio">
+
+    </div>
+    <script>
+
+        //tagged templates come in handy when trying to add an abbreviation tag to a sentence
+        const dict = {
+            HTML: 'Hyper Text Markup Language',
+            CSS: 'Cascading Style Sheets',
+            JS: 'JavaScript'
+        };
+
+        function addAbbreviations(strings, ...values){
+            const abbreviated = values.map(value => {  //take the regular values and map over them and returtn a new array.
+                if(dict[value]) {  //if the dictionary has an item for that specific value, ie. if there a value for HTML_;
+                    return `<abbr title="${dict[value]}">${value}</abbr>` //make a new array of not just the values, but if there should be an abbreviation, the should be wrapped in a abbr Tag
+                    // the title of that abbreviation tag is the dictionary item with that key of html css or js and inside of the abbr tag, we return the value.
+                }
+                return value;
+            })
+            return strings.reduce((sentence, string, i) => {
+                return `${sentence}${string}${abbreviated[i] || ''}`
+            }, '');
+        }
+
+        const first = 'Wes';
+        const last = 'Bos';
+        const sentence = addAbbreviations`Hello my name is ${first} ${last} and I 
+            love to code ${'HTML'}, ${'CSS'} and ${'JS'}` ;
+
+        const bio = document.querySelector('.bio');
+        const p = document.createElement('p');
+        p.innerHTML = sentence;
+        bio.appendChild(p);
+
+    </script>
+</body>
+</html>
